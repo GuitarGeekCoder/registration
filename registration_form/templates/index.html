@@ -1,0 +1,131 @@
+<!-- registration_form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golang Seminar Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Golang Seminar Registration Form</h2>
+        {% if duplicate_email %}
+        <p style="color: red;">A registration with this email already exists. Please use a different email.</p>
+        {% endif %}
+        <form method="post" action="{% url 'register_ME:register_ME' %}">
+            {% csrf_token %}
+            <label for="full_name">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="course">Course:</label>
+            <select id="course" name="course" required>
+                <option value="" disabled selected>Select Course</option>
+                <option value="Mca">Mca</option>
+                <option value="B.E/B.tech">B.E/B.tech</option>
+                <option value="Bca">Bca</option>
+                <option value="Bsc">Bsc</option>
+                <option value="B.com">B.com</option>
+                <option value="Diploma">Diploma</option>
+                <option value="ITI">ITI</option>
+            </select>
+
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="" disabled selected>Select Department</option>
+                <option value="CS">CS</option>
+                <option value="IT">IT</option>
+                <option value="EC">EC</option>
+            </select>
+            
+            <label for="college_name">College Name:</label>
+            <select id="college_name" name="college_name" required>
+                <option value="" disabled selected>Select College</option>
+                <option value="Gyan Ganga">GGITS Jabalpur - Gyan Ganga Institute of Technology and Science</option>
+                <option value="Women's Polytechnic">Government Women's Polytechnic College, Jabalpur</option>
+                <option value="IIITDM">IIITDM Jabalpur - PDPM Indian Institute of Information Technology Design</option>
+                <option value="JEC">JEC Jabalpur - Jabalpur Engineering College</option>
+                <option value="Kalaniketan">Kalaniketan Polytechnic College, Jabalpur</option>
+                <option value="RDVV">RDVV Jabalpur - Rani Durgavati Vishwavidyalaya, Jabalpur</option>
+                <option value="Khalsa">Sri Guru Tegh Bahadur Khalsa College, Jabalpur</option>
+            </select>
+            <button type="submit" class="button">Register</button>
+        </form>
+    </div>
+</body>
+</html>
